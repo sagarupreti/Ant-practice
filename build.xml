@@ -1,0 +1,24 @@
+<project>
+    <property name="build" value="build/classes"/>
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="${build}"/>
+    </target>   
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${build}"/>
+        <jar destfile="build/jar/Myapp.jar" basedir="${build}">
+            <manifest>
+                <attribute name="Main-Class" value="com.cibt.app.program"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="build/jar/Myapp.jar" fork="true"/>
+    </target>
+</project>
